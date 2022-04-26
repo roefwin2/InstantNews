@@ -8,7 +8,7 @@ data class NetworkNewsApiResponse(
     @Json(name = "totalResults")
     val totalResults : Int?,
     @Json(name = "articles")
-    val articles : List<NetworkNews>,
+    val articles : List<NetworkNews>?,
     @Json(name = "code")
     val code : String?,
     @Json(name = "message")
