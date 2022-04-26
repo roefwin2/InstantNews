@@ -1,7 +1,8 @@
 package com.instant.instantnews.injection
 
 import android.util.Log
-import com.instant.instantnews.network.NewsApi
+import com.instant.instantnews.network.api.NewsApi
+import com.instant.instantnews.utils.Constants
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -24,7 +25,7 @@ object NetworkModule {
         moshi: Moshi
     ): NewsApi {
         val retrofit = Retrofit.Builder()
-            .baseUrl("")
+            .baseUrl(Constants.NEWS_API_BASE_URL)
             .client(httpClient)
             .addConverterFactory(MoshiConverterFactory.create(moshi).failOnUnknown())
             .build()
