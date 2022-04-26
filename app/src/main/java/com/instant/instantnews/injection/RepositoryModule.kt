@@ -1,6 +1,6 @@
 package com.instant.instantnews.injection
 
-import com.instant.instantnews.network.NewsApi
+import com.instant.instantnews.network.api.NewsApi
 import com.instant.instantnews.repository.NewsApiRepository
 import dagger.Module
 import dagger.Provides
