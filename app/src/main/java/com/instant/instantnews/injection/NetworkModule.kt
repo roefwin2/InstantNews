@@ -4,6 +4,7 @@ import android.util.Log
 import com.instant.instantnews.network.api.NewsApi
 import com.instant.instantnews.utils.Constants
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,7 +46,11 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideMoshiConverter(): Moshi = Moshi.Builder().build()
+    fun provideMoshiConverter(): Moshi =
+        // See https://github.com/square/moshi#kotlin
+        Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
 
     @Singleton
     @Provides
