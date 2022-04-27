@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         lifecycleScope.launchWhenResumed {
             newsApiRepository.getArticles().collect{
-                Toast.makeText(applicationContext,it,Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext,it.toString(),Toast.LENGTH_LONG).show()
             }
         }
 
