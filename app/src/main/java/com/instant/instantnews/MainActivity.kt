@@ -10,17 +10,10 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    @Inject
-    lateinit var newsApiRepository: NewsApiRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        lifecycleScope.launchWhenResumed {
-            newsApiRepository.getArticles().collect{
-                Toast.makeText(applicationContext,it.toString(),Toast.LENGTH_LONG).show()
-            }
-        }
 
-    }
+        }
 }
