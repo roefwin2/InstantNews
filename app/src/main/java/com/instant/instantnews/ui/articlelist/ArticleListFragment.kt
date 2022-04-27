@@ -25,6 +25,7 @@ class ArticleListFragment : Fragment() {
     private var _binding: ArticleListFragmentBinding? = null
     private val binding: ArticleListFragmentBinding get() = _binding!!
 
+    //TODO memory leak to nullable in the onDestroy
     private lateinit var adapter: ArticleAdapter
 
     private val viewModel: ArticleListViewModel by viewModels()
@@ -86,6 +87,5 @@ class ArticleListFragment : Fragment() {
             findNavController().navigate(direction)
         }
     }
-
 
 }

@@ -6,7 +6,7 @@ import com.instant.instantnews.utils.resource.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
-
+//TODO create interface also to separate the layer
 class FetchArticleListUsecase@Inject constructor(private val repository: NewsApiRepository) {
 
     suspend fun invoke() : Flow<Resource<List<NewsModel>>> {

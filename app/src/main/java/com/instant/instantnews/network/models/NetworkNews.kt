@@ -27,8 +27,8 @@ data class NetworkNews(
             return NewsModel(
                 this.title,
                 this.description,
-                this.urlToImage,
-                this.url
+                this.url,
+                this.urlToImage
             )
         }
     }

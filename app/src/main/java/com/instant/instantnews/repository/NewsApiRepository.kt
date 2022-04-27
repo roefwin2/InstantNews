@@ -2,12 +2,12 @@ package com.instant.instantnews.repository
 
 import com.instant.instantnews.network.api.NewsApi
 import com.instant.instantnews.network.models.NetworkNews
+import com.instant.instantnews.network.models.NetworkNews.Companion.toNewsModel
 import com.instant.instantnews.ui.models.NewsModel
 import com.instant.instantnews.utils.resource.Resource
 import kotlinx.coroutines.flow.flow
-import java.lang.Exception
 import javax.inject.Inject
-
+//TODO create interface to separate the layer and respect the SOLID principle
 class NewsApiRepository @Inject constructor(private val newsApi: NewsApi) {
 
     suspend fun getArticles() = flow {
@@ -29,6 +29,6 @@ class NewsApiRepository @Inject constructor(private val newsApi: NewsApi) {
     }
 
     private fun transformNetworkToModel(list: List<NetworkNews>): List<NewsModel> {
-        return list.map { NewsModel(it.title, it.description, it.url, it.urlToImage) }
+        return list.map { it.toNewsModel() }
     }
 }
