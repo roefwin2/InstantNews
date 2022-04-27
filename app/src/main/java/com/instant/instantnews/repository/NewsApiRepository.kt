@@ -14,7 +14,13 @@ class NewsApiRepository @Inject constructor(private val newsApi: NewsApi) {
         emit(Resource.Loading)
         try {
             val result = newsApi.getEverything()
-            emit(Resource.Success(result))
+            if (result.status == "ok") {
+                result.articles?.let {
+                    emit(Resource.Success(it))
+                }
+            } else {
+                emit(result.message?.let { Resource.Error(it) })
+            }
         } catch (e: Exception) {
             emit(Resource.Error(e.toString()))
         }

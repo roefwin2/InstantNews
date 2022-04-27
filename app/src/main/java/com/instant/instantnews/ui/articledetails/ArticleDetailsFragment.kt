@@ -38,10 +38,13 @@ class ArticleDetailsFragment : Fragment() {
 
     private fun setUI() {
         binding.detailTitle.text = args.newsDetails.title
+
         Glide.with(requireContext())
             .load(args.newsDetails.urlToImage)
             .into(binding.detailimage)
+
         binding.detailDescription.text = args.newsDetails.description
+
         binding.detailUrl.text = args.newsDetails.url
     }
 
