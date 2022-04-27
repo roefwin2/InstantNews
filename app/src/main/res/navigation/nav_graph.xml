@@ -9,5 +9,18 @@
         android:id="@+id/articleListFragment"
         android:name="com.instant.instantnews.ui.articlelist.ArticleListFragment"
         android:label="article_list_fragment"
-        tools:layout="@layout/article_list_fragment" />
+        tools:layout="@layout/article_list_fragment" >
+        <action
+            android:id="@+id/action_articleListFragment_to_articleDetailsFragment"
+            app:destination="@id/articleDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/articleDetailsFragment"
+        android:name="com.instant.instantnews.ui.articledetails.ArticleDetailsFragment"
+        android:label="article_details_fragment"
+        tools:layout="@layout/article_details_fragment" >
+        <argument
+            android:name="newsDetails"
+            app:argType="com.instant.instantnews.navigation.DetailsNews" />
+    </fragment>
 </navigation>
