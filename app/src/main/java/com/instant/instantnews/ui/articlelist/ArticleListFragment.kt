@@ -4,16 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.instant.instantnews.R
 import com.instant.instantnews.databinding.ArticleListFragmentBinding
-import com.instant.instantnews.network.models.NetworkNewsApiResponse
+import com.instant.instantnews.network.models.NetworkNews
 import com.instant.instantnews.ui.articlelist.adapter.ArticleAdapter
 import com.instant.instantnews.utils.resource.Resource
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,16 +40,17 @@ class ArticleListFragment : Fragment() {
         viewModel.fetchListData()
     }
 
-    private fun processListScreenState(resource: Resource<NetworkNewsApiResponse>) {
+    private fun processListScreenState(resource: Resource<List<NetworkNews>>) {
         when (resource) {
             is Resource.Error -> {
+                binding.progressBar.isVisible = false
             }
             Resource.Loading -> {
+                binding.progressBar.isVisible = true
             }
             is Resource.Success -> {
-                resource.value.articles?.let { list ->
-                    adapter.data = list
-                }
+                binding.progressBar.isVisible = false
+                adapter.data = resource.value
             }
         }
     }
@@ -65,18 +66,23 @@ class ArticleListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //separator
         val dividerItemDecoration = DividerItemDecoration(
             binding.recyclerView.context, LinearLayoutManager.VERTICAL
         )
+
+
+        //binding
         binding.recyclerView.addItemDecoration(dividerItemDecoration)
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
+        //navigation
         adapter.onClickListener = {
-            val direction  =
+            val direction =
                 ArticleListFragmentDirections.actionArticleListFragmentToArticleDetailsFragment(it)
-                R.id.action_articleListFragment_to_articleDetailsFragment
+            R.id.action_articleListFragment_to_articleDetailsFragment
             findNavController().navigate(direction)
         }
     }
