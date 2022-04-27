@@ -12,10 +12,11 @@ import com.bumptech.glide.request.RequestOptions
 import com.instant.instantnews.databinding.InstantNewsItemBinding
 import com.instant.instantnews.navigation.DetailsNews
 import com.instant.instantnews.network.models.NetworkNews
+import com.instant.instantnews.ui.models.NewsModel
 
 class ArticleAdapter(val context: Context) : RecyclerView.Adapter<ArticleCardViewHolder>() {
 
-    var data: List<NetworkNews> = emptyList()
+    var data: List<NewsModel> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()

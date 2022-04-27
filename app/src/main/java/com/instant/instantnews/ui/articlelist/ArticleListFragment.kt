@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.instant.instantnews.R
 import com.instant.instantnews.databinding.ArticleListFragmentBinding
-import com.instant.instantnews.network.models.NetworkNews
 import com.instant.instantnews.ui.articlelist.adapter.ArticleAdapter
+import com.instant.instantnews.ui.models.NewsModel
 import com.instant.instantnews.utils.resource.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -40,7 +40,7 @@ class ArticleListFragment : Fragment() {
         viewModel.fetchListData()
     }
 
-    private fun processListScreenState(resource: Resource<List<NetworkNews>>) {
+    private fun processListScreenState(resource: Resource<List<NewsModel>>) {
         when (resource) {
             is Resource.Error -> {
                 binding.progressBar.isVisible = false
