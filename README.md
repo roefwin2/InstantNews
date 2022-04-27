@@ -15,7 +15,7 @@ je me suis beaucoups attardé sur les parties back(network,data,business logic) 
 * Migration également possible d'Adapter en ListAdatpter avec DiffUtil
 
 
-#Problème non traité mais identifié
+#Problèmes non traités mais identifiés
 * Improvement pour la sécurité de la key utilisé un fichier native c++, BuildConfig n'est pas suffisant
 * Utilisation de Ktor comme systeme de networking car beaucoup plus adapté au Kotlin
 * Approfondissement des test unitaires en testant notamment les cas d'erreurs et le repository
