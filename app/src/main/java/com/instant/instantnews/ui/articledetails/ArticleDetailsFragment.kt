@@ -1,19 +1,14 @@
 package com.instant.instantnews.ui.articledetails
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import com.bumptech.glide.Glide
+import coil.load
 import com.instant.instantnews.R
 import com.instant.instantnews.databinding.ArticleDetailsFragmentBinding
-import com.instant.instantnews.databinding.ArticleListFragmentBinding
-import com.instant.instantnews.ui.articlelist.ArticleListViewModel
-import com.instant.instantnews.utils.resource.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,9 +34,10 @@ class ArticleDetailsFragment : Fragment() {
     private fun setUI() {
         binding.detailTitle.text = args.newsDetails.title
 
-        Glide.with(requireContext())
-            .load(args.newsDetails.urlToImage)
-            .into(binding.detailimage)
+        binding.detailimage.load(args.newsDetails.urlToImage){
+            placeholder(R.drawable.loading_animation)
+            error(R.drawable.ic_broken_image)
+        }
 
         binding.detailDescription.text = args.newsDetails.description
 
